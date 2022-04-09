@@ -19,10 +19,6 @@ export const PostStatistics = ({ post }) => {
 					<FontAwesomeIcon icon={faThumbsDown} size="lg" color={'gray'} />
 					<p> {post.dislikeCount} </p>
 				</Flex>
-				<Flex>
-					<FontAwesomeIcon icon={faCommentAlt} size="lg" color={'gray'} />
-					<p> 5 </p>
-				</Flex>
 			</div>
 		</ContainerPost>
 	);
@@ -30,7 +26,7 @@ export const PostStatistics = ({ post }) => {
 
 const ContainerPost = styled.div`
 	display: flex;
-	gap: 1rem;
+	gap: 0.5rem;
 `;
 
 const ImgPost = styled.img`
@@ -41,7 +37,6 @@ const ImgPost = styled.img`
 
 const Flex = styled.div`
 	display: flex;
-	align-items: center;
-	gap: 1rem;
-	margin-bottom: 1rem;
+	justify-content: center;
+	gap: 0.15rem;
 `;

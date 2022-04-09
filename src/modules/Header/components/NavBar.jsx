@@ -39,8 +39,9 @@ const Nav = styled.div`
 		padding: 0.7rem;
 		color: black;
 		cursor: pointer;
+		text-decoration: none;
 
-		&: hover {
+		&:hover {
 			background: #e5e5e5;
 		}
 	}

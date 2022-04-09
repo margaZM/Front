@@ -14,7 +14,7 @@ const Statistics = () => {
 		<Provider store={store}>
 			<GlobalStyle />
 			<GridLayout>
-				<Header />
+				<Header origin="statistics" />
 				<ContainerStatistics>
 					<Tabs tab1={'General'} tab2={'Detalle'}>
 						<div>
