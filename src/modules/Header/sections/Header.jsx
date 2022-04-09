@@ -28,9 +28,9 @@ const Header = ({ setSearch, search, setIsOpenModal, setIsEdit, origin }) => {
 				<FontAwesomeIcon icon={faSearch} size="lg" color={'gray'} />
 			</IconMobile>
 			<Menu>
-				{user?.name === 'Admin' && (
+				{origin !== 'statistics' && user?.name === 'Admin' && (
 					<button onClick={openModal}>
-						<FontAwesomeIcon icon={faPlus} size="sm" color={'white'} />
+						<FontAwesomeIcon icon={faPlus} size="lg" color={'white'} />
 					</button>
 				)}
 				<MenuProfile />

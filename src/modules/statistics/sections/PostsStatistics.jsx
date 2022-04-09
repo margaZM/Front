@@ -30,9 +30,9 @@ const Container = styled.div`
 	padding: 0 0.5rem;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1rem;
+	gap: 2rem;
 	@media (min-width: 1024px) {
 		padding: 0 3rem;
-		gap: 2.5rem;
+		gap: 3rem;
 	}
 `;
