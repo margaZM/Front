@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Header from '../modules/Header/sections/Header';
 import Categories from '../modules/posts/components/Categories';
-import Featured from '../modules/posts/components/Featured';
+import SectionFeatured from '../modules/posts/sections/SectionFeatured';
 import GlobalStyle from '../assets/css/globalStyles';
 import BannerMujer from '../assets/images/banners_mujer.svg';
 import BannerHombre from '../assets/images/banners_hombres.svg';
@@ -29,7 +29,7 @@ const HomePage = () => {
 				/>
 				<Categories setCategory={setCategory} />
 				<Posts>
-					<Featured />
+					<SectionFeatured />
 					<SectionPosts
 						category={category}
 						search={search}
