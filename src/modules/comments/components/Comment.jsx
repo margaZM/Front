@@ -19,7 +19,6 @@ const Comment = ({
 	const dispatch = useDispatch();
 
 	const handleDeleteComment = async () => {
-		console.log('borrar');
 		try {
 			await deleteComment(comment.id);
 			dispatch(setDeleteComment(comment));

@@ -15,18 +15,14 @@ const InputSearch = ({ setSearch, search }) => {
 					{!search && <IconCheck icon={faSearch} style={{ color: 'gray' }} />}
 				</div>
 			</FormGroup>
-			<ul />
 		</ContainerInputSearch>
 	);
 };
 
 const ContainerInputSearch = styled.div`
-	/* display: none; */
-	@media (min-width: 768px) {
-		display: flex;
-		justify-content: center;
-		align-self: center;
-	}
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 const InputElement = styled.input`

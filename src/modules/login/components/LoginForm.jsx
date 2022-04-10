@@ -119,7 +119,6 @@ const LoginForm = () => {
 								});
 							})
 							.catch((e) => {
-								console.log(e);
 								setIsError(true);
 								setErrorMessage('Correo o contraseña inválidos');
 							});

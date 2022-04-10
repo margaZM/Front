@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export const Tabs = ({ tab1, tab2, children }) => {
 	const [index, setIndex] = useState(0);
 
-	console.log(index);
 	return (
 		<Container>
 			<ContainerTabs>
