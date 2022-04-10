@@ -33,6 +33,7 @@ const Nav = styled.div`
 	& span {
 		padding: 0.7rem;
 		display: block;
+		text-transform: capitalize;
 	}
 	& a {
 		display: block;

@@ -64,7 +64,7 @@ const SectionPosts = ({
 	}
 
 	const handleNewComment = (post) => {
-		if (window.innerWidth >= 800) {
+		if (window.innerWidth >= 768) {
 			setIsOpenComment(true);
 			setdataComments(post);
 		} else {
@@ -85,6 +85,7 @@ const SectionPosts = ({
 							handleEditPost={handleEditPost}
 							handleDeletePost={handleDeletePost}
 							handleNewComment={() => handleNewComment(post)}
+							origin={'post'}
 						/>
 					))
 				) : (

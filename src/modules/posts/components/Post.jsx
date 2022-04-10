@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import LogoPost from '../../../assets/images/logomobile.svg';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import {
+	faEdit,
+	faThumbsUp as fasThumbsUp,
+	faThumbsDown as fasThumbsDown,
+} from '@fortawesome/free-solid-svg-icons';
 import {
 	faThumbsUp,
 	faCommentAlt,
@@ -65,7 +69,6 @@ const Post = ({
 			};
 
 			reactToPost(data).then((response) => {
-				console.log(response);
 				dispatch(setUpdatePost({ ...post, userReaction: response.reactionType }));
 			});
 		} else {
@@ -76,7 +79,6 @@ const Post = ({
 			};
 
 			reactToPost(data).then((response) => {
-				console.log(response);
 				dispatch(setUpdatePost({ ...post, userReaction: response.reactionType }));
 			});
 		}
@@ -104,42 +106,42 @@ const Post = ({
 			<ImgPost src={post.pictureUrl} alt="imagen-producto" origin={origin} />
 			<Flex>
 				<Flex>
-					{like || post.userReaction == 1 ? (
-						<i className="fa-solid fa-thumbs-up fs-5" onClick={() => postLike(post)}></i>
-					) : (
-						<FontAwesomeIcon
-							icon={faThumbsUp}
-							size="lg"
-							color={'gray'}
-							onClick={() => postLike(post)}
-						/>
+					{
+						<Icons>
+							<FontAwesomeIcon
+								icon={like || post.userReaction == 1 ? fasThumbsUp : faThumbsUp}
+								size="lg"
+								color={post.userReaction === 1 ? '#00628f' : 'gray<'}
+								onClick={() => postLike(post)}
+							/>
+							<span>{post.likeCount > 0 && post.likeCount}</span>
+						</Icons>
+					}
+					{
+						<Icons>
+							<FontAwesomeIcon
+								icon={disLike || post.userReaction == 2 ? fasThumbsDown : faThumbsDown}
+								size="lg"
+								color={post.userReaction === 2 ? '#00628f' : 'gray'}
+								onClick={() => postDisLike(post)}
+							/>
+							<span>{post.dislikeCount > 0 && post.dislikeCount}</span>
+						</Icons>
+					}
+					{origin === 'post' && (
+						<Icons>
+							<FontAwesomeIcon
+								icon={faCommentAlt}
+								size="lg"
+								color={'gray'}
+								onClick={() => handleNewComment(post.id)}
+							/>
+							<span>{totalComments}</span>
+						</Icons>
 					)}
-					{disLike || post.userReaction == 2 ? (
-						<i
-							className="fa-solid fa-thumbs-down fs-5"
-							onClick={() => postDisLike(post)}
-						></i>
-					) : (
-						<FontAwesomeIcon
-							icon={faThumbsDown}
-							size="lg"
-							color={'gray'}
-							onClick={() => postDisLike(post)}
-						/>
-					)}
-					<div>
-						<FontAwesomeIcon
-							icon={faCommentAlt}
-							size="lg"
-							color={'gray'}
-							onClick={() => handleNewComment(post.id)}
-						/>
-						<span>{totalComments}</span>
-					</div>
 				</Flex>
-
 				<Flex>
-					{user?.name === 'Admin' && (
+					{origin === 'post' && user?.name === 'Admin' && (
 						<FontAwesomeIcon
 							icon={faEdit}
 							size="lg"
@@ -148,7 +150,7 @@ const Post = ({
 						/>
 					)}
 
-					{user?.name === 'Admin' && (
+					{origin === 'post' && user?.name === 'Admin' && (
 						<FontAwesomeIcon
 							icon={faTrashAlt}
 							size="lg"
@@ -201,11 +203,14 @@ const TagCategory = styled.span`
 const ImgPost = styled.img`
 	width: 100%;
 	height: auto;
-	max-height: 80vh;
+	max-height: 60vh;
 	margin-bottom: 1.25rem;
 
 	@media (min-width: 768px) {
 		max-height: ${(props) => (props.origin === 'comments' ? '250px' : '50vh')};
+	}
+	@media (min-width: 1024px) {
+		max-height: ${(props) => (props.origin === 'comments' ? '250px' : '60vh')};
 	}
 `;
 
@@ -223,6 +228,13 @@ const Flex = styled.div`
 const DescriptionPost = styled.p`
 	margin: 0.5rem 0;
 	line-height: 1.5;
+`;
+
+const Icons = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 0.2rem;
+	color: gray;
 `;
 
 export default Post;

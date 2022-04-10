@@ -15,7 +15,6 @@ const Backdrop = styled.div`
 `;
 
 const ContainerModal = styled.div`
-	position: fixed;
 	z-index: 2;
 	background: white;
 	width: 380px;
@@ -23,6 +22,10 @@ const ContainerModal = styled.div`
 	height: auto;
 	border-radius: 5px;
 	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	justify-content: space-between;
 `;
 
 const HeadModal = styled.div`
@@ -44,27 +47,22 @@ const HeadModal = styled.div`
 `;
 
 const BodyModal = styled.div`
-	padding-top: 2rem;
+	padding-top: 1rem;
 	min-height: 60%;
 	height: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
+	text-align: center;
 
-	button {
-		width: 90%;
-		background: linear-gradient(90deg, #003185 1.89%, #01567e 98.36%);
-		height: 30px;
-		border: none;
-		color: white;
+	& h2 {
+		font-size: 1.5rem;
 		font-weight: bold;
-		border-radius: 5px;
-		cursor: pointer;
-
-		&:hover {
-			opacity: 0.97;
-		}
+	}
+	& p {
+		font-size: 1.2rem;
+		margin-top: 1rem;
 	}
 `;
 

@@ -88,7 +88,7 @@ const Scroll = styled.div`
 		border-radius: 30px;
 	}
 
-	@media (min-width: 800px) {
+	@media (min-width: 768px) {
 		display: block;
 		max-height: 70vh;
 		*/ &::-webkit-scrollbar-track {

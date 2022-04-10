@@ -105,11 +105,11 @@ const Comments = ({ postId }) => {
 
 const Container = styled.div`
 	margin: 0 1rem;
-	@media (min-width: 800px) {
+	@media (min-width: 768px) {
 		position: relative;
 		top: 15px;
 	}
-	@media (max-width: 800px) {
+	@media (max-width: 768px) {
 		grid-area: comments;
 	}
 `;
@@ -118,7 +118,7 @@ const Scroll = styled.div`
 	overflow: auto;
 	min-height: 75vh;
 	max-height: 80vh;
-	@media (min-width: 800px) {
+	@media (min-width: 768px) {
 		min-height: 380px;
 		max-height: 45vh;
 	}
@@ -145,7 +145,7 @@ const ContainerInput = styled.div`
 	border: solid 2px ${(props) => (props.isEdit ? 'rgba(82,168,236,.8)' : 'none')};
 	box-shadow: ${(props) => (props.isEdit ? '0 0 8px rgba(82,168,236,.6)' : 'none')};
 	width: 100%;
-	@media (min-width: 800px) {
+	@media (min-width: 768px) {
 		position: absolute;
 		bottom: 10px;
 	}

@@ -21,7 +21,7 @@ const InputSearch = ({ setSearch, search }) => {
 };
 
 const ContainerInputSearch = styled.div`
-	display: none;
+	/* display: none; */
 	@media (min-width: 768px) {
 		display: flex;
 		justify-content: center;
