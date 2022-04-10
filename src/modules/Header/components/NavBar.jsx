@@ -1,5 +1,6 @@
 import { logout } from '../../../stores/AccessTokenStore';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const NavBar = ({ setNavBar }) => {
 	const user = JSON.parse(localStorage.getItem('user'));
@@ -12,7 +13,7 @@ const NavBar = ({ setNavBar }) => {
 			<Nav onClick={closeNavBar}>
 				<span>¡Bienvenido!</span>
 				<span>{user?.name}</span>
-				{user?.name === 'Admin' && <a href="/statistics">Estadísticas</a>}
+				{user?.name === 'Admin' && <Link to="/statistics">Estadísticas</Link>}
 				<a onClick={logout}>Salir</a>
 			</Nav>
 		</nav>

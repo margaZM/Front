@@ -4,14 +4,22 @@ import LogoImg from '../../../assets/images/logo.png';
 import LogoMobileImg from '../../../assets/images/logomobile.svg';
 import InputSearch from '../../../ui/InputSearch';
 import MenuProfile from '../components/MenuProfile';
-import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+	faSearch,
+	faPlus,
+	faTimes,
+	faChevronLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({ setSearch, search, setIsOpenModal, setIsEdit, origin }) => {
 	const [openIconSearch, setOpenIconSearch] = useState(false);
 
+	const history = useNavigate();
+
 	const redirectTo = () => {
-		window.location.assign('/');
+		history('/');
 	};
 	const user = JSON.parse(localStorage.getItem('user'));
 
@@ -19,8 +27,14 @@ const Header = ({ setSearch, search, setIsOpenModal, setIsEdit, origin }) => {
 		setIsEdit(false);
 		setIsOpenModal(true);
 	};
+
 	const getIconSearch = () => {
 		setOpenIconSearch(true);
+	};
+
+	const closeInputSearch = () => {
+		setOpenIconSearch(false);
+		setSearch('all');
 	};
 
 	useEffect(() => {
@@ -43,14 +57,12 @@ const Header = ({ setSearch, search, setIsOpenModal, setIsEdit, origin }) => {
 				onClick={redirectTo}
 				alt="logo"
 			/>
-			{origin !== 'statistics' ? (
+			{origin === 'posts' && (
 				<ShowInputSearch>
 					<InputSearch setSearch={setSearch} search={search} />
 				</ShowInputSearch>
-			) : (
-				<div></div>
 			)}
-			{!openIconSearch ? (
+			{origin === 'posts' && !openIconSearch ? (
 				<IconSearchMobile onClick={getIconSearch}>
 					<FontAwesomeIcon icon={faSearch} size="lg" color={'gray'} />
 				</IconSearchMobile>
@@ -59,15 +71,31 @@ const Header = ({ setSearch, search, setIsOpenModal, setIsEdit, origin }) => {
 			)}
 
 			<Menu isHide={openIconSearch}>
-				{origin !== 'statistics' && user?.name === 'Admin' && (
+				{origin === 'posts' && user?.name === 'Admin' && (
 					<button onClick={openModal}>
 						<FontAwesomeIcon icon={faPlus} size="lg" color={'white'} />
 					</button>
+				)}
+				{origin === 'comments-mobile' && (
+					<FontAwesomeIcon
+						icon={faChevronLeft}
+						size="lg"
+						style={{ cursor: 'pointer' }}
+						color={'gray'}
+						onClick={redirectTo}
+					/>
 				)}
 				<MenuProfile />
 			</Menu>
 			{openIconSearch && (
 				<ContainerInputSearch>
+					<FontAwesomeIcon
+						icon={faTimes}
+						size="lg"
+						style={{ cursor: 'pointer' }}
+						color={'gray'}
+						onClick={closeInputSearch}
+					/>
 					<InputSearch setSearch={setSearch} search={search} />
 				</ContainerInputSearch>
 			)}
@@ -77,12 +105,10 @@ const Header = ({ setSearch, search, setIsOpenModal, setIsEdit, origin }) => {
 
 const HeaderElement = styled.div`
 	z-index: 99999;
-	min-width: 99vw;
-	max-width: 99vw;
+	min-width: 99.9vw;
+	max-width: 99.9vw;
 	position: fixed;
 	display: grid;
-	/* display: ${(props) => (props.isHide ? 'none' : 'grid')}; */
-	grid-template-columns: 1fr 40px 120px;
 	grid-template-columns: ${(props) => (props.isHide ? '1fr' : '1fr 40px 120px')};
 	align-items: center;
 	background: white;
@@ -144,6 +170,8 @@ const ContainerInputSearch = styled.div`
 	width: 100vw;
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
 `;
 
 export default Header;

@@ -9,6 +9,7 @@ import Post from '../components/Post';
 import CommentsModal from '../../comments/modal/CommentsModal';
 import Title from '../components/Title';
 import WithoutPublications from '../components/WithoutPublications';
+import { useNavigate } from 'react-router-dom';
 
 const SectionPosts = ({
 	category,
@@ -27,6 +28,7 @@ const SectionPosts = ({
 	const title = isEdit ? 'Editar publicación' : 'Crear publicación';
 
 	const dispatch = useDispatch();
+	const history = useNavigate();
 
 	let { posts } = useSelector((state) => state.posts);
 
@@ -56,6 +58,9 @@ const SectionPosts = ({
 
 	if (search) {
 		posts = posts.filter((post) => {
+			if (search === 'all') {
+				return posts;
+			}
 			return (
 				post.tags[post.tags.length - 1].toLowerCase().includes(search) ||
 				post.description.toLowerCase().includes(search)
@@ -68,7 +73,7 @@ const SectionPosts = ({
 			setIsOpenComment(true);
 			setdataComments(post);
 		} else {
-			window.location.href = `/comments/${post.id}`;
+			history(`/comments/${post.id}`);
 		}
 	};
 

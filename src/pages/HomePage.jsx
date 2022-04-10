@@ -26,6 +26,7 @@ const HomePage = () => {
 					search={search}
 					setIsOpenModal={setIsOpenModal}
 					setIsEdit={setIsEdit}
+					origin={'posts'}
 				/>
 				<Categories setCategory={setCategory} />
 				<Posts>
@@ -57,14 +58,14 @@ const GridLayout = styled.div`
 		'. categories .'
 		'. . .'
 		'. posts .';
-	grid-template-rows: 8vh 1.5vh 15vh 1.5vh 74vh;
+	grid-template-rows: 8vh 4vh 17vh 2vh 65vh;
 	grid-template-columns: 1% 97% 2%;
 	@media (min-width: 768px) {
 		grid-template-columns: 2% 20% 5% 46% 5% 20% 2%;
 		grid-template-areas:
 			'header header header header header header header'
 			'. categories . posts . banners .';
-		grid-template-rows: 10vh 85vh;
+		grid-template-rows: 12vh 83vh;
 	}
 `;
 

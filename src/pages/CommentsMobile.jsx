@@ -11,18 +11,9 @@ export const CommentsMobile = () => {
 	const [idPost, setIdPost] = useState('');
 	const [isOpenModal, setIsOpenModal] = useState(false);
 	const [isEdit, setIsEdit] = useState(false);
-	// const [loading, setLoading] = useState(true);
 
 	const params = window.location.pathname;
 	const postId = Number(params.substring(params.lastIndexOf('/') + 1));
-
-	// useEffect(() => {
-	// 	setIdPost(postId);
-	// 	setLoading(false);
-	// }, [postId]);
-
-	console.log(params, postId);
-	// console.log(idPost, 'id pge');
 
 	return (
 		<Provider store={store}>
@@ -33,6 +24,7 @@ export const CommentsMobile = () => {
 					search={search}
 					setIsOpenModal={setIsOpenModal}
 					setIsEdit={setIsEdit}
+					origin={'comments-mobile'}
 				/>
 				<Comments postId={postId} />
 			</GridLayout>
@@ -45,5 +37,5 @@ const GridLayout = styled.div`
 	grid-template-areas:
 		'header'
 		'comments';
-	grid-template-rows: 12vh 80vh;
+	grid-template-rows: 15vh 80vh;
 `;
