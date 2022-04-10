@@ -49,6 +49,7 @@ const NameUser = styled.span`
 	display: none;
 	@media (min-width: 768px) {
 		display: block;
+		text-transform: capitalize;
 	}
 `;
 

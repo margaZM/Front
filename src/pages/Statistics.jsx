@@ -51,7 +51,7 @@ const GeneralStatistics = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
-	@media (min-width: 800px) {
+	@media (min-width: 768px) {
 		display: flex;
 		flex-direction: row;
 	}

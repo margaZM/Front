@@ -125,6 +125,8 @@ const RegisterForm = () => {
 		message: '',
 	});
 
+	const toHome = () => history('/');
+
 	const onSubmit = (e) => {
 		e.preventDefault();
 		if (isValid) {
@@ -138,18 +140,20 @@ const RegisterForm = () => {
 					setInfoModal({
 						type: 'success',
 						title: `¡Felicidades! ${response.name}`,
-						message: 'Tu cuenta se ha creado de manera exitosa',
+						message: 'Tu cuenta se ha creado de manera exitosa.',
 					});
+					const user = {
+						name: response.name,
+						email: response.email,
+					};
+					localStorage.setItem('user', JSON.stringify(user));
 
 					setIsOpenModal(true);
 
-					setTimeout(() => {
-						login(fields).then((response) => {
-							setAccessToken(response.token);
-							doLogin({ user: response.name, email: response.email });
-							history('/');
-						});
-					}, 3000);
+					login(fields).then((response) => {
+						setAccessToken(response.token);
+						doLogin({ user: response.name, email: response.email });
+					});
 				})
 
 				.catch((e) => {
@@ -322,6 +326,7 @@ const RegisterForm = () => {
 				message={infoModal.message}
 				setIsOpenModal={setIsOpenModal}
 				isOpenModal={isOpenModal}
+				toHome={toHome}
 			/>
 		</>
 	);

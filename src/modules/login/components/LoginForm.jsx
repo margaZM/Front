@@ -123,9 +123,9 @@ const LoginForm = () => {
 								setIsError(true);
 								setErrorMessage('Correo o contraseña inválidos');
 							});
+					} else {
+						setIsError(true), setErrorMessage('Este correo no está registrado');
 					}
-					setIsError(true),
-						setErrorMessage('Este correo no está registrado');
 				})
 				.catch((e) => {
 					console.log(e);
@@ -197,7 +197,7 @@ const LoginForm = () => {
 					<div className="input-group mb-3 d-flex align-items-center ">
 						<InputWidth>
 							<Input
-								label="contraseña"
+								label="Contraseña"
 								className="form-control "
 								id={'password'}
 								type={showing.activepassword ? 'text' : 'password'}
@@ -245,11 +245,7 @@ const LoginForm = () => {
 						</Link>
 					</p>
 
-					<BaseButton
-						type="submit"
-						text="INICIAR SESIÓN"
-						disabled={isValid()}
-					/>
+					<BaseButton type="submit" text="INICIAR SESIÓN" disabled={isValid()} />
 					<Link
 						style={{
 							display: 'block',

@@ -16,6 +16,7 @@ const SectionFeatured = () => {
 	useEffect(() => {
 		dispatch(getAllPosts());
 	}, [dispatch]);
+	console.log(posts);
 
 	return (
 		<Container>
@@ -43,7 +44,7 @@ const Container = styled.div`
 
 const Divider = styled.div`
 	width: 125px;
-	height: 1px;
+	height: 1.12px;
 	background: #354a62;
 	margin: 1rem 0;
 `;
