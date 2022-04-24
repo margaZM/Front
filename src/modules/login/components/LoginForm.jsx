@@ -191,36 +191,24 @@ const LoginForm = () => {
 						onFocus={onFocus}
 						message={touched.email && errors.email}
 						isvalid={errors.email}
+						origin={'login'}
 					/>
-
-					<div className="input-group mb-3 d-flex align-items-center ">
-						<InputWidth>
-							<Input
-								label="Contraseña"
-								className="form-control "
-								id={'password'}
-								type={showing.activepassword ? 'text' : 'password'}
-								name="password"
-								value={password}
-								/*disabled={showing.activepassword}*/
-								onChange={onChange}
-								onBlur={onBlur}
-								onFocus={onFocus}
-								isvalid={errors.password}
-							/>
-						</InputWidth>
-						<div className="input-group-append">
-							<i
-								onClick={showPassword}
-								id="eye"
-								className={
-									statePassword
-										? 'fa-solid fa-eye-slash btn btn-outline-secondary mb-2 '
-										: 'fa-solid fa-eye btn btn-outline-secondary mb-2'
-								}
-							></i>
-						</div>
-					</div>
+					<Input
+						label="Contraseña"
+						className="form-control "
+						id={'password'}
+						type={showing.activepassword ? 'text' : 'password'}
+						name="password"
+						value={password}
+						/*disabled={showing.activepassword}*/
+						onChange={onChange}
+						onBlur={onBlur}
+						onFocus={onFocus}
+						isvalid={errors.password}
+						origin={'password'}
+						showPassword={showPassword}
+						statePassword={statePassword}
+					/>
 
 					{isError && <Error message={errorMessage} />}
 
@@ -244,7 +232,7 @@ const LoginForm = () => {
 						</Link>
 					</p>
 
-					<BaseButton type="submit" text="INICIAR SESIÓN" disabled={isValid()} />
+					<BaseButton type="submit" text="INICIAR SESIÓN" />
 					<Link
 						style={{
 							display: 'block',

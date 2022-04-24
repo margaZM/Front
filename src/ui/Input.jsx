@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import {
 	Label,
@@ -7,6 +8,7 @@ import {
 	FormGroup,
 	IconCheck,
 	MessageError,
+	IconEye,
 } from '../assets/css/styledForm';
 
 const InputGroup = styled.div`
@@ -27,6 +29,9 @@ const Input = ({
 	disabled,
 	autofocus,
 	iconCheck = true,
+	origin,
+	statePassword,
+	showPassword,
 }) => {
 	return (
 		<InputGroup>
@@ -43,7 +48,16 @@ const Input = ({
 					disabled={disabled}
 					autoFocus={autofocus}
 				/>
-				{iconCheck && <IconCheck icon={faCheckCircle} isvalid={isvalid} />}
+				{iconCheck && origin !== 'login' && (
+					<IconCheck icon={faCheckCircle} isvalid={isvalid} />
+				)}
+				{origin === 'password' && (
+					<IconEye
+						icon={statePassword ? faEyeSlash : faEye}
+						statePassword={statePassword}
+						onClick={showPassword}
+					/>
+				)}
 			</FormGroup>
 			<MessageError>{message}</MessageError>
 		</InputGroup>

@@ -152,6 +152,16 @@ const IconCheck = styled(FontAwesomeIcon)`
 	opacity: 1;
 `;
 
+const IconEye = styled(FontAwesomeIcon)`
+	color: #666666;
+	position: absolute;
+	right: 10px;
+	bottom: 14px;
+	z-index: 2;
+	font-size: 16px;
+	opacity: 1;
+`;
+
 const ButtonElement = styled.button`
 	width: ${(props) => props.expanded && '100%'};
 	height: 3rem;
@@ -177,8 +187,8 @@ const ButtonElement = styled.button`
 	}
 
 	&:active {
-		box-shadow: rgba(0, 0, 0, 0.1) 0 3px 6px 0,
-			rgba(0, 0, 0, 0.1) 0 0 10px 0, rgba(0, 0, 0, 0.1) 0 1px 4px -1px;
+		box-shadow: rgba(0, 0, 0, 0.1) 0 3px 6px 0, rgba(0, 0, 0, 0.1) 0 0 10px 0,
+			rgba(0, 0, 0, 0.1) 0 1px 4px -1px;
 		transform: translateY(2px);
 		transition-duration: 0.35s;
 	}
@@ -220,4 +230,5 @@ export {
 	IconCheck,
 	ButtonElement,
 	InputWidth,
+	IconEye,
 };
