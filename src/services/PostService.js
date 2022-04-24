@@ -46,6 +46,7 @@ export const updatePost = async (id, post) => {
 
 export const reactToPost = async (data) => {
 	const res = await http.post('/Posts/ReactToPost', data);
+
 	return res;
 };
 
