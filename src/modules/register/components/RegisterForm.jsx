@@ -14,7 +14,7 @@ const displayLastCharDeleting = 60;
 
 const EMAIL_PATTERN =
 	// eslint-disable-next-line
-	/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})\D$/i;
+	/^[a-z0-9!'#$%&*+\/=?^_`{|}~-]+(?:\.[a-z0-9!'#$%&*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-zA-Z]{2,}$/i;
 const NUM_PATTERN = /[0-9]/;
 const CAPITAL_PATTERN = /[A-Z]/;
 const LOWERCASE_PATTERN = /[a-z]/;
