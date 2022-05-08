@@ -45,7 +45,12 @@ const Post = ({
 
 			reactToPost(data).then((response) => {
 				dispatch(
-					setUpdatePost({ ...post, userReaction: response.reactionType })
+					setUpdatePost({
+						...post,
+						userReaction: response.reactionType,
+						likeCount: post.likeCount + 1,
+						dislikeCount: post.dislikeCount - 1,
+					}),
 				);
 			});
 		} else {
@@ -57,13 +62,18 @@ const Post = ({
 
 			reactToPost(data).then((response) => {
 				dispatch(
-					setUpdatePost({ ...post, userReaction: response.reactionType })
+					setUpdatePost({
+						...post,
+						userReaction: response.reactionType,
+					}),
 				);
 			});
 		}
 	};
 
 	const postDisLike = (post) => {
+		console.log(post);
+
 		if (disLike === false) {
 			setDisLike(true);
 			setLike(false);
@@ -74,7 +84,12 @@ const Post = ({
 
 			reactToPost(data).then((response) => {
 				dispatch(
-					setUpdatePost({ ...post, userReaction: response.reactionType })
+					setUpdatePost({
+						...post,
+						userReaction: response.reactionType,
+						dislikeCount: post.dislikeCount + 1,
+						likeCount: post.likeCount - 1,
+					}),
 				);
 			});
 		} else {
@@ -86,7 +101,10 @@ const Post = ({
 
 			reactToPost(data).then((response) => {
 				dispatch(
-					setUpdatePost({ ...post, userReaction: response.reactionType })
+					setUpdatePost({
+						...post,
+						userReaction: response.reactionType,
+					}),
 				);
 			});
 		}
@@ -104,19 +122,14 @@ const Post = ({
 				</DatePost>
 				<TagCategory
 					color={TAGS.map(
-						(tag) =>
-							tag.value === post.tags[post.tags.length - 1] && tag.color
+						(tag) => tag.value === post.tags[post.tags.length - 1] && tag.color,
 					)}
 				>
 					{post.tags[post.tags.length - 1]}
 				</TagCategory>
 			</HeaderPost>
 			<DescriptionPost>{post.description}</DescriptionPost>
-			<ImgPost
-				src={post.pictureUrl}
-				alt="imagen-producto"
-				origin={origin}
-			/>
+			<ImgPost src={post.pictureUrl} alt="imagen-producto" origin={origin} />
 			<Flex>
 				<Flex>
 					{
@@ -124,25 +137,19 @@ const Post = ({
 							{user.name !== 'Admin' ? (
 								<FontAwesomeIcon
 									icon={
-										like &&
-										post.userReaction == 1 &&
-										user?.name === 'Admin'
+										like && post.userReaction == 1 && user?.name === 'Admin'
 											? fasThumbsUp
 											: faThumbsUp
 									}
 									size="lg"
-									color={post.userReaction === 1 ? '#00628f' : 'gray<'}
+									color={post.userReaction === 1 ? '#00628f' : 'gray'}
 									onClick={() => postLike(post)}
 								/>
 							) : (
 								<FontAwesomeIcon
-									icon={
-										like || post.userReaction == 1
-											? fasThumbsUp
-											: faThumbsUp
-									}
+									icon={like || post.userReaction == 1 ? fasThumbsUp : faThumbsUp}
 									size="lg"
-									color={post.userReaction === 1 ? '#00628f' : 'gray<'}
+									color={post.userReaction === 1 ? '#00628f' : 'gray'}
 								/>
 							)}
 
@@ -153,22 +160,14 @@ const Post = ({
 						<Icons>
 							{user.name !== 'Admin' ? (
 								<FontAwesomeIcon
-									icon={
-										disLike || post.userReaction == 2
-											? fasThumbsDown
-											: faThumbsDown
-									}
+									icon={disLike || post.userReaction == 2 ? fasThumbsDown : faThumbsDown}
 									size="lg"
 									color={post.userReaction === 2 ? '#00628f' : 'gray'}
 									onClick={() => postDisLike(post)}
 								/>
 							) : (
 								<FontAwesomeIcon
-									icon={
-										disLike || post.userReaction == 2
-											? fasThumbsDown
-											: faThumbsDown
-									}
+									icon={disLike || post.userReaction == 2 ? fasThumbsDown : faThumbsDown}
 									size="lg"
 									color={post.userReaction === 2 ? '#00628f' : 'gray'}
 								/>
@@ -220,8 +219,7 @@ const ContainerPost = styled.div`
 	border-radius: 10px;
 	max-width: 99vw;
 	margin: 0.5rem 0rem;
-	max-height: ${(props) =>
-		props.origin === 'comments' ? '500px' : 'auto'};
+	max-height: ${(props) => (props.origin === 'comments' ? '500px' : 'auto')};
 	@media (min-width: 1120px) {
 		margin: 0.5rem 1.5rem;
 	}
@@ -256,12 +254,10 @@ const ImgPost = styled.img`
 	margin-bottom: 1.25rem;
 
 	@media (min-width: 768px) {
-		max-height: ${(props) =>
-			props.origin === 'comments' ? '250px' : '50vh'};
+		max-height: ${(props) => (props.origin === 'comments' ? '250px' : '50vh')};
 	}
 	@media (min-width: 1024px) {
-		max-height: ${(props) =>
-			props.origin === 'comments' ? '250px' : '60vh'};
+		max-height: ${(props) => (props.origin === 'comments' ? '250px' : '60vh')};
 	}
 `;
 

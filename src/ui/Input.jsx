@@ -48,15 +48,11 @@ const Input = ({
 					disabled={disabled}
 					autoFocus={autofocus}
 				/>
-				{iconCheck && origin !== 'login' && (
+				{iconCheck && origin !== 'password' && (
 					<IconCheck icon={faCheckCircle} isvalid={isvalid} />
 				)}
 				{origin === 'password' && (
-					<IconEye
-						icon={statePassword ? faEyeSlash : faEye}
-						statePassword={statePassword}
-						onClick={showPassword}
-					/>
+					<IconEye icon={statePassword ? faEyeSlash : faEye} onClick={showPassword} />
 				)}
 			</FormGroup>
 			<MessageError>{message}</MessageError>
