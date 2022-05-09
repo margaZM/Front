@@ -19,6 +19,9 @@ services:
         environment:
            - ConnectionStrings__DefaultConnection=Server=db; User Id=appuser; Password=secret; Database=FashionLike
            - ASPNETCORE_ENVIRONMENT=Development
+           - Token__Key=My super secret key
+           - Token__Issuer=http://localhost:44360
+           - ApiUrl=http://localhost:44360/
         depends_on:
             - db
     # frontend:
