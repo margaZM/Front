@@ -1,71 +1,69 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Backdrop = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 40px;
-  z-index: 1;
-  display: grid;
-  align-items: center;
-  justify-items: center;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.7);
+	padding: 40px;
+	z-index: 99999999999;
+	display: grid;
+	align-items: center;
+	justify-items: center;
 `;
 
 const ContainerModal = styled.div`
-  position: fixed;
-  z-index: 2;
-  background: white;
-  width: 380px;
-  min-height: 350px;
-  height: auto;
-  border-radius: 5px;
-  padding: 20px;
+	z-index: 2;
+	background: white;
+	width: 380px;
+	min-height: 350px;
+	height: auto;
+	border-radius: 5px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	justify-content: space-between;
 `;
 
 const HeadModal = styled.div`
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-  div {
-    text-align: center;
-  }
+	div {
+		text-align: center;
+	}
 
-  button {
-    width: 30px;
-    font-size: 22px;
-    align-self: flex-end;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-  }
+	button {
+		width: 30px;
+		font-size: 22px;
+		align-self: flex-end;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+	}
 `;
 
 const BodyModal = styled.div`
-  padding-top: 2rem;
-  min-height: 60%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+	padding-top: 1rem;
+	min-height: 60%;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	text-align: center;
 
-  button {
-    width: 90%;
-    background: linear-gradient(90deg, #003185 1.89%, #01567e 98.36%);
-    height: 30px;
-    border: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 0.97;
-    }
-  }
+	& h2 {
+		font-size: 1.5rem;
+		font-weight: bold;
+	}
+	& p {
+		font-size: 1.2rem;
+		margin-top: 1rem;
+	}
 `;
 
 export { Backdrop, ContainerModal, HeadModal, BodyModal };

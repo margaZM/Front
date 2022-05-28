@@ -7,9 +7,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import iconError from '../../../assets/images/error-red.png';
+import styled from 'styled-components';
+import BaseButton from '../../../ui/BaseButton';
 
 const ModalConfirmDelete = ({
-	title,
 	message,
 	isOpenModal,
 	setIsOpenModal,
@@ -35,23 +37,42 @@ const ModalConfirmDelete = ({
 								<FontAwesomeIcon icon={faTimes} />
 							</button>
 							<div>
-								<FontAwesomeIcon icon={faQuestionCircle} size="6x" color={'blue'} />
+								<img src={iconError} alt="icon" width="60px" />
 							</div>
 						</HeadModal>
 
 						<BodyModal style={{ lineHeight: '2' }}>
-							<h2> {title} </h2>
 							<p style={{ textAlign: 'center' }}> {message} </p>
-							<button onClick={deletePost}>ELIMINAR</button>
-							<p style={{ textDecoration: 'underline' }} onClick={closeModal}>
-								Cancelar
-							</p>
 						</BodyModal>
+						<ContainerButtons>
+							<div onClick={closeModal}>
+								<BaseButton text={'CANCELAR'} />
+							</div>
+							<div onClick={deletePost}>
+								<BaseButton text={'ELIMINAR'} />
+							</div>
+						</ContainerButtons>
 					</ContainerModal>
 				</Backdrop>
 			)}
 		</>
 	);
 };
+
+const ContainerButtons = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	& div {
+		width: 100%;
+	}
+	& div:nth-child(1) {
+		& button {
+			background: #ececec;
+			color: gray;
+		}
+	}
+`;
 
 export default ModalConfirmDelete;

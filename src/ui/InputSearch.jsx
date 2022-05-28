@@ -1,15 +1,28 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import { getAllPosts } from '../stores/slices/posts';
 import { FormGroup, IconCheck } from '../assets/css/styledForm';
 
+const InputSearch = ({ setSearch, search }) => {
+	const handleSearch = (e) => {
+		setSearch(e.target.value.toLowerCase());
+	};
+
+	return (
+		<ContainerInputSearch>
+			<FormGroup>
+				<div>
+					<InputElement type="search" onKeyUp={handleSearch} placeholder="Buscar...." />
+					{!search && <IconCheck icon={faSearch} style={{ color: 'gray' }} />}
+				</div>
+			</FormGroup>
+		</ContainerInputSearch>
+	);
+};
+
 const ContainerInputSearch = styled.div`
-	display: none;
-	@media (min-width: 768px) {
-		display: block;
-	}
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 const InputElement = styled.input`
@@ -28,28 +41,5 @@ const InputElement = styled.input`
 		box-shadow: 3px 0px 30px rgba(163, 163 163 0.4);
 	}
 `;
-
-const InputSearch = ({ setSearch, search }) => {
-	// const [search, setSearch] = useState('');
-	// const dispatch = useDispatch();
-	// let { posts } = useSelector((state) => state.posts);
-
-	const handleSearch = (e) => {
-		setSearch(e.target.value.toLowerCase());
-		// dispatch(getAllPosts(search));
-	};
-
-	return (
-		<ContainerInputSearch>
-			<FormGroup>
-				<div>
-					<InputElement type="search" onKeyUp={handleSearch} placeholder="Buscar...." />
-					{!search && <IconCheck icon={faSearch} style={{ color: 'gray' }} />}
-				</div>
-			</FormGroup>
-			<ul />
-		</ContainerInputSearch>
-	);
-};
 
 export default InputSearch;

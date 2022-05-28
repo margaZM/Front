@@ -28,14 +28,13 @@ const Categories = ({ setCategory }) => {
 const Container = styled.div`
   background: #FFF;
   border-radius: 20px;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
   border: solid 0.5px #f5f5f5;
   grid-area: categories;
-  margin-bottom: 1rem;
 }
 `;
 const Divider = styled.div`
-	width: 220;
+	width: 220px;
 	height: 1px;
 	background: #f5f5f5;
 	margin: 1rem 0;
@@ -88,9 +87,9 @@ const Scroll = styled.div`
 		border-radius: 30px;
 	}
 
-	@media (min-width: 1120px) {
+	@media (min-width: 768px) {
 		display: block;
-		max-height: 70vh;
+		max-height: 76vh;
 		*/ &::-webkit-scrollbar-track {
 			background: #ececec;
 			border-radius: 30px;
@@ -99,6 +98,9 @@ const Scroll = styled.div`
 			background: #ccd7e0;
 			border-radius: 30px;
 		}
+	}
+	@media (min-width: 1120px) {
+		max-height: 70vh;
 	}
 `;
 

@@ -1,9 +1,35 @@
 version: "3.8"
-services: 
-  backend:
-    image: "danny247/fashion-like-backend"
-    container_name: fashionlike
-    tty: true 
-    ports:
-      - '44360:80'
+services:
+    db:
+        image: postgres
+        environment:
+          POSTGRES_PASSWORD: secret
+          POSTGRES_USER: appuser
+        ports:
+            - 5432:5432
+    adminer:
+        image: adminer
+        ports:
+          - 8080:8080
+    backend:
+        image: "danny247/fashion-like-backend"
+        tty: true 
+        ports:
+          - '44360:80'
+        environment:
+           - ConnectionStrings__DefaultConnection=Server=db; User Id=appuser; Password=secret; Database=FashionLike
+           - ASPNETCORE_ENVIRONMENT=Development
+           - Token__Key=My super secret key
+           - Token__Issuer=http://localhost:44360
+           - ApiUrl=http://localhost:44360/
+        depends_on:
+            - db
+    # frontend:
+        # image: "danny247/fashion-like-frontend"
+        # tty: true 
+        # ports:
+          # - '80:3000'
+        # depends_on:
+            # - backend
+               
 #docker-compose up
